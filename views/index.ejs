@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- title -->
+    <h1><%= title %></h1>
+
+    <hr />
+
+    <!-- tools -->
+    <form method="GET" action="/tasks/new">
+      <button>Add Task</button>
+    </form>
+
+    <hr />
+
+    <!-- filters -->
+    <p>Filters :</p>
+    <div class="filter-div">
+      <form action="/tasks/p/low" method="GET">
+        <button>low</button>
+      </form>
+      <form action="">
+        <button>medium</button>
+      </form>
+      <form action="">
+        <button>high</button>
+      </form>
+      <form action="">
+        <button>urgent</button>
+      </form>
+
+      <!-- st -->
+      <form action="" method="GET">
+        <button>All Tasks</button>
+      </form>
+      <form action="">
+        <button>Completed</button>
+      </form>
+      <form action="">
+        <button>Started</button>
+      </form>
+      <form action="">
+        <button>Not Started</button>
+      </form>
+    </div>
+
+    <hr />
+
+    <!-- tasks -->
+    <% for (let task of tasks) { %>
+    <div class="task">
+      <p><b>Title :- </b> <%= task.taskTitle %></p>
+      <p><b>Description :- </b> <%= task.taskDescription %></p>
+      <p><b>Priority :- </b> <%= task.taskPriority %></p>
+      <p><b>Status :- </b> <%= task.taskStatus %></p>
+      <hr />
+      <p><b>Created On:</b> <%= task.created_at.toString().split(" ")[4] %></p>
+
+      <div class="inline-box">
+        <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
+          <button>Delete task</button>
+        </form>
+        <form action="/tasks/<%= task._id %>/edit" method="GET">
+          <button>Edit task</button>
+        </form>
+
+        <!-- status -->
+        <form action="">
+          <button>Mark as completed</button>
+        </form>
+        <form action="">
+          <button>Mark as Started</button>
+        </form>
+        <form>
+          <button>Mark as not Started</button>
+        </form>
+      </div>
+    </div>
+
+    <% } %>
+  </body>
+</html>

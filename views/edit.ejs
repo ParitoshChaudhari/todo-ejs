@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Task</title>
+  </head>
+  <body>
+    <h1>Edit Task</h1>
+    <hr />
+    <br /><br />
+    <form action="/tasks/<%= task._id %>?_method=PUT" method="POST">
+      <label for="taskTitle">Task Title</label>
+      <br />
+      <input
+        type="text"
+        name="taskTitle"
+        placeholder="Enter the task title"
+        value="<%= task.taskTitle %>"
+      />
+
+      <br /><br />
+
+      <label for="taskDescription">Task Description</label>
+      <br />
+      <textarea
+        name="taskDescription"
+        rows="5"
+        placeholder="Enter the task description"
+      >
+      <%= task.taskDescription %></textarea
+      >
+
+      <br /><br />
+
+      <label for="taskPriority">Task Priority</label>
+      <br />
+      <select name="taskPriority" required>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+        <option value="urgent">Urgent</option>
+      </select>
+
+      <br /><br />
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
