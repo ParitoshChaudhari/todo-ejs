@@ -17,6 +17,10 @@ dbConnect();
 
 // routes
 
+app.get("/",(req,res)=>{
+  res.redirect("/tasks");
+})
+
 // all tasks
 app.get("/tasks", async (req, res) => {
   let tasks = await Task.find();
