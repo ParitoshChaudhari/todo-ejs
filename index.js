@@ -5,6 +5,7 @@ const dbConnect = require("./connections/db.js");
 const dotenv = require("dotenv");
 const methodOverride = require("method-override");
 const Task = require("./models/task.js");
+const ejsMate = require('ejs-mate');
 
 dotenv.config();
 app.set("view engine", "ejs");
@@ -12,6 +13,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+app.engine('ejs',ejsMate);
+
 
 dbConnect();
 
@@ -25,12 +28,12 @@ app.get("/",(req,res)=>{
 app.get("/tasks", async (req, res) => {
   let tasks = await Task.find();
   let title = "All Tasks";
-  res.render("index.ejs", { tasks, title });
+  res.render("tasks/index.ejs", { tasks, title });
 });
 
 // new
 app.get("/tasks/new", (req, res) => {
-  res.render("new.ejs");
+  res.render("tasks/new.ejs");
 });
 
 app.post("/tasks", async (req, res) => {
@@ -57,7 +60,7 @@ app.delete("/tasks/:id", async (req, res) => {
 app.get("/tasks/:id/edit", async (req, res) => {
   let { id } = req.params;
   let task = await Task.findById(id);
-  res.render("edit.ejs", { task });
+  res.render("tasks/edit.ejs", { task });
 });
 
 app.put("/tasks/:id", async (req, res) => {
@@ -84,7 +87,7 @@ app.put("/tasks/:id", async (req, res) => {
 app.get("/tasks/p/low", async (req, res) => {
   let tasks = await Task.find({ taskPriority: "low" });
   let title = "Low Priority Tasks";
-  res.render("index.ejs", { tasks, title });
+  res.render("tasks/index.ejs", { tasks, title });
 });
 
 app.listen(process.env.PORT || 8080, () => {
