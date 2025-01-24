@@ -1,25 +1,14 @@
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
+/* Navbar */
+.navbar{
+  /* height: 3rem; */
+  background-color: white;
 }
 
-.task {
-  background-color: aquamarine;
-  border-radius: 1rem;
-  padding: 0.8rem;
-  margin: 0.6rem;
+.fa-compass{
+  color: #fe424d;
+  font-size: 1rem;
 }
 
-.inline-box {
-  display: flex;
-  margin: 0.3rem;
-}
-
-.filter-div {
-  display: inline-flex;
-}
-
-.filter-div button {
-  margin: 0.3rem;
+.nav-link{
+  color:#222222 ;
 }
